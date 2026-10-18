@@ -10,6 +10,20 @@ window.rideHelper = {
             if (e.key === key) ref.invokeMethodAsync('Reload');
         });
     },
+    _gpsWatch: null,
+    startGps: ref => {
+        if (!navigator.geolocation) return 'unsupported';
+        if (window.rideHelper._gpsWatch !== null) navigator.geolocation.clearWatch(window.rideHelper._gpsWatch);
+        window.rideHelper._gpsWatch = navigator.geolocation.watchPosition(
+            p => ref.invokeMethodAsync('OnGps', p.coords.latitude, p.coords.longitude, p.coords.accuracy || 0),
+            e => ref.invokeMethodAsync('OnGpsError', e.code),
+            { enableHighAccuracy: true, maximumAge: 5000, timeout: 20000 });
+        return 'ok';
+    },
+    stopGps: () => {
+        if (window.rideHelper._gpsWatch !== null) navigator.geolocation.clearWatch(window.rideHelper._gpsWatch);
+        window.rideHelper._gpsWatch = null;
+    },
     setAccent: name => {
         document.documentElement.setAttribute('data-accent', name);
     },

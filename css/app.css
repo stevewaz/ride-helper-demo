@@ -232,3 +232,26 @@ a.row:hover, .row.clickable:hover { background: color-mix(in srgb, var(--sk-prim
 .tl-late { background: var(--sk-red); color: #fff; }
 .legend { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 10px; }
 .dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 4px; vertical-align: -1px; }
+
+/* Maps (Leaflet, loaded on demand by the staff screens) */
+.map-wrap { position: relative; border-radius: 20px; overflow: hidden; border: 1px solid var(--sk-outline); background: var(--sk-container); }
+.live-map { position: absolute; inset: 0; z-index: 0; }
+.map-loading { position: absolute; inset: 0; display: grid; place-items: center; z-index: 1; pointer-events: none; }
+.live-map .leaflet-control-attribution { font-size: 10px; }
+:root[bit-theme="dark"] .live-map .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.92) contrast(.9) saturate(.7); }
+.bus-pin-wrap, .stop-pin-wrap { background: none; border: 0; }
+.bus-pin { width: 34px; height: 34px; border-radius: 50%; background: var(--c, var(--sk-primary)); color: #fff; border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0, 0, 0, .4);
+  display: grid; place-items: center; font: 800 13px Nunito, system-ui, sans-serif; }
+.bus-pin.stale { opacity: .55; }
+.stop-pin { width: 100%; height: 100%; border-radius: 50%; background: var(--c, var(--sk-gray)); border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0, 0, 0, .4); }
+.stop-pin.target { border-width: 3px; box-shadow: 0 0 0 5px color-mix(in srgb, var(--c, var(--sk-primary)) 35%, transparent), 0 1px 4px rgba(0, 0, 0, .4); }
+.stop-pin.dropoff { border-radius: 3px; }
+.prompt { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-radius: 16px;
+  background: color-mix(in srgb, var(--sk-green) 18%, transparent); color: var(--sk-text); font-weight: 700; }
+.gps-card { display: grid; gap: 8px; padding: 14px 16px; }
+.gps-state { display: flex; align-items: center; gap: 8px; font-size: .85rem; color: var(--sk-muted); }
+.pulse { width: 10px; height: 10px; border-radius: 50%; background: var(--sk-green); box-shadow: 0 0 0 0 color-mix(in srgb, var(--sk-green) 60%, transparent); animation: pulse 1.6s infinite; }
+@keyframes pulse { 70% { box-shadow: 0 0 0 10px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+.stop-eta { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; font-size: 1rem; }
+.stop-eta strong { font-size: 1.25rem; }
+.stat-row-gap { height: 4px; }
